@@ -1,5 +1,6 @@
 >页面为什么会出现乱码？
 >
+
 文字是。。。，编码没有设置对，计算机读取到时，可能编码错误导致乱码
 >学了多久？
 重点学习内容？
@@ -12,13 +13,13 @@ number string boolean object null undefined
 >如何判断数据类型？
 >
 typeof()
-只能判断简单的数据类型
+只能判断简单的数据类型(number, string, object, undefined, function)
 
 >复杂数据类型判断？
 原理？
 >
-instanceof()
-原型链
+A instanceof B
+判断A的原型链上是否有B
 
 >null会等于true吗？
 >
@@ -36,13 +37,15 @@ null == true为false
 
 >深拷贝浅拷贝？
 >
+递归实现
 
 >js 实现sleep函数？
 >
 sleep函数作用是让线程休眠，等到指定时间在重新唤起。
 1. 写一个循环，结束循环的条件是时间已经到了指定时间之后
 利用Date对象： `new Date().getTime()`
-2. 
+2. 定时器实现
+3. promise实现
 
 
 >js 事件循环机制？
