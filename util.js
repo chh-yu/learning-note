@@ -76,10 +76,7 @@ var throttle_v2 = function(func, wait){
     }
 }
 
-/**
- * 拓展对象
- * 浅拷贝与深拷贝
- */
+/* 拓展对象 浅拷贝与深拷贝 */
  function extend() {
     var aLength = arguments.length;
     var options = arguments[0];
@@ -130,3 +127,45 @@ function typejudge(i){
     if(i instanceof Function) return "Function"
     return "Object"
 }
+
+/* 封装一个instanceof功能的方法 */
+function judge(target, origin){
+    if(target.__proto__ == undefined){
+      return false
+    }
+    if(target == Object.prototype && origin != Object){
+      return false
+    }
+    if(typeof target == 'object'){
+      if(target.__proto__ == origin.prototype)
+        return true
+      else
+        return judge(target.__proto__, origin)
+    }
+    else{
+      if(target.prototype == origin.prototype)
+        return true
+      else
+        return judge(target.prototype, origin)
+    }
+  }
+
+/* 圣杯模式继承 */
+function inherit_v1(Target, Origin){
+    function F(){}
+    F.prototype = Origin.prototype
+    Target.prototype = new F()
+    Target.prototype.constructor = Target
+    Target.prototype.uber = Origin
+}
+
+/* 雅虎YUI3库圣杯模式继承, 用闭包和立即执行函数实现私有变量 */
+var inherit_v2 = (function(){
+    var F = function (){}
+    return function(Target, Origin){
+        F.prototype = Origin.prototype
+        Target.prototype = new F()
+        Target.prototype.constructor = Target
+        Target.prototype.uber = Origin
+    }
+})()

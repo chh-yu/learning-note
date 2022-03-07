@@ -39,3 +39,41 @@ sleep函数作用是让线程休眠，等到指定时间在重新唤起。
 ### 防抖和节流？
 1. 防抖（debounce）：所谓防抖，就是指触发事件后在 n 秒内函数只能执行一次，如果在 n 秒内又触发了事件，则会重新计算函数执行时间。
 2. 节流（throttle）：所谓节流，就是指连续触发事件但是在 n 秒中只执行一次函数。节流会稀释函数的执行频率。
+### html5有哪些新特性
+语义化标签：header,footer,nav etc.
+canvas 画布、audio, video、drag 拖拽、本地存储 localStorage, sessionStorage、webSocket 长连接、定位、增强型表单 input number, datalist, keygen, output, progress、svg 矢量绘图、webWorker 实现js多进程。
+### css3
+CSS3圆角 border-radius
+盒阴影 box-shadow
+边框图像 border-image
+linear-gradient()：线性渐变。
+。。。
+### 如何理解web语义化
+* 正确的标签做正确的事情
+* 页面内容结构化
+* 无CSS样子时也容易阅读，便于阅读维护和理解
+* 便于浏览器、搜索引擎解析。 利于爬虫标记、利于SEO（Search Engine Optimization, 搜索引擎优化）
+#### html语义化标签
+HTML为网页文档内容提供上下文结构和含义。对于HTML体系而言，Web语义化是指使用语义恰当的标签，使页面有良好的结构，让页面元素有含义，便于被浏览器、搜索引擎解析、利于SEO。通常我们所说的HTML应该是完全脱离表现信息的，其中的标签应该都是语义化地定义了文档的结构。
+html语义化标签包括 body, article, nav, aside, section, header, footer, hgroup, 还有 h1-h6 address等。
+#### css语义化
+CSS语义就是class和ID命名的语义。class属性作为HTML与CSS衔接的纽带，其本意是用来描述元素内容的。指用易于理解的名称对html标签附加的class或id命名。如果说HTML语义化标签是给机器看的，那么CSS命名的语义化就是给人看的。良好的CSS命名方式减少沟通调试成本，易于理解。
+#### ARIA
+ARIA即Accessible Rich Internet Application，中文译为无障碍富互联网应用。可以为一些有功能障碍（如听力，视力）的人群通过屏幕阅读器例如voiceover等，提供无障碍访问动态、可交互Web内容。
+而应用于HTML的ARIA有两部分组成：role 和aria-*。
+role标识了一个元素的作用，aria-描述了与之有关的事物特征及其状态。
+W3C对ARIA无障碍Web规范这样解释：
+Web developers may use the ARIA role and aria-* attributes on HTML elements, in accordance with the requirements described in [wai-aria-1.1], except where these conflict with the strong native semantics or are equal to the implicit ARIA semantics of a given HTML element.
+>Setting an ARIA role and/or aria-* attribute that matches the implicit ARIA semantics is unnecessary and is not recommended as these properties are already set by the browser.
+>
+### src和href区别
+#### href
+href：Hypertext Reference的缩写，超文本引用，它指向一些网络资源，建立和当前元素或者说是本文档的链接关系。在加载它的时候，不会停止对当前文档的处理，浏览器会继续往下走。常用在a、link等标签。
+```
+<a href="http://www.baidu.com"></a>
+<link type="text/css" rel="stylesheet" href="common.css">
+```
+ 如上面所显示的那样，当浏览器加载到link标签时，会识别这是CSS文档，并行下载该CSS文档，但并不会停止对当前页面后续内容的加载。这也是不建议使用@import加载CSS的原因。
+#### src
+src：source的所写，表示的是对资源的引用，它指向的内容会嵌入到当前标签所在的位置。由于src的内容是页面必不可少的一部分，因此浏览器在解析src时会停下来对后续文档的处理，直到src的内容加载完毕。常用在script、img、iframe标签中，我们建议js文件放在HTML文档的最后面。如果js文件放在了head标签中，可以使用window.onload实现js的最后加载。
+总结：href用于建立当前页面与引用资源之间的关系（链接），而src则会替换当前标签。遇到href，页面会并行加载后续内容；而src则不同，浏览器需要加载完毕src的内容才会继续往下走。
