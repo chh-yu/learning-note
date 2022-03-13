@@ -132,3 +132,53 @@
         return ret
     };
 }
+{
+    // 101. 对称二叉树
+    // 给你一个二叉树的根节点 root ， 检查它是否轴对称。
+    /**
+     * Definition for a binary tree node.
+     * function TreeNode(val, left, right) {
+     *     this.val = (val===undefined ? 0 : val)
+     *     this.left = (left===undefined ? null : left)
+     *     this.right = (right===undefined ? null : right)
+     * }
+     */
+    /**
+     * @param {TreeNode} root
+     * @return {boolean}
+     */
+    // 递归
+    // 执行用时：68 ms, 在所有 JavaScript 提交中击败了81.60%的用户
+    // 内存消耗：43.7 MB, 在所有 JavaScript 提交中击败了21.54%的用户
+    var isSymmetric = function(root) {
+        function dfs(rootl, rootr){
+            if(!rootl && !rootr) return true
+            if(!rootl && rootr || rootl && !rootr || rootl.val != rootr.val) return false
+            return dfs(rootl.left, rootr.right) && dfs(rootl.right, rootr.left)
+        }
+        return dfs(root.left, root.right)
+    };
+    //迭代
+    var isSymmetric = function(root) {
+        function check(u, v){
+            var q = []
+            q.push(u),q.push(v);
+    
+        while (q.length) {
+            u = q.shift();
+            v = q.shift();
+    
+            if (!u && !v) continue;
+            if ((!u || !v) || (u.val !== v.val)) return false;
+    
+            q.push(u.left); 
+            q.push(v.right);
+    
+            q.push(u.right); 
+            q.push(v.left);
+        }
+        return true;
+        }
+        return check(root.left, root.right)
+    };
+}
