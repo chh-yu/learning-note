@@ -182,3 +182,90 @@
         return check(root.left, root.right)
     };
 }
+{
+    // 104. 二叉树的最大深度
+    //     给定一个二叉树，找出其最大深度。
+    // 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+    // 说明: 叶子节点是指没有子节点的节点。
+    /**
+     * Definition for a binary tree node.
+     * function TreeNode(val, left, right) {
+     *     this.val = (val===undefined ? 0 : val)
+     *     this.left = (left===undefined ? null : left)
+     *     this.right = (right===undefined ? null : right)
+     * }
+     */
+    /**
+     * @param {TreeNode} root
+     * @return {number}
+     */
+    var maxDepth = function(root) {
+        function dfs(root){
+            if(!root){
+                return 0
+            }
+            return Math.max(dfs(root.left)+1, dfs(root.right)+1)
+        }
+        return dfs(root)
+    };
+}
+{
+    // 110. 平衡二叉树
+    // 给定一个二叉树，判断它是否是高度平衡的二叉树。
+    // 本题中，一棵高度平衡二叉树定义为：
+    // 一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1 。
+    /**
+     * Definition for a binary tree node.
+     * function TreeNode(val, left, right) {
+     *     this.val = (val===undefined ? 0 : val)
+     *     this.left = (left===undefined ? null : left)
+     *     this.right = (right===undefined ? null : right)
+     * }
+     */
+    /**
+     * @param {TreeNode} root
+     * @return {boolean}
+     */
+    var isBalanced = function(root) {
+        var check = true
+        function dfs(root){
+            if(!root) return 0
+            var highl = dfs(root.left)
+            var highr= dfs(root.right)
+            if(highl - highr > 1 || highr - highl > 1) check = false
+            return Math.max(highl+1, highr+1)
+        }
+        dfs(root)
+        return check
+    };
+}
+{
+    // 111. 二叉树的最小深度
+    // 给定一个二叉树，找出其最小深度。
+    // 最小深度是从根节点到最近叶子节点的最短路径上的节点数量。
+    // 说明：叶子节点是指没有子节点的节点。
+    /**
+     * Definition for a binary tree node.
+     * function TreeNode(val, left, right) {
+     *     this.val = (val===undefined ? 0 : val)
+     *     this.left = (left===undefined ? null : left)
+     *     this.right = (right===undefined ? null : right)
+     * }
+     */
+    /**
+     * @param {TreeNode} root
+     * @return {number}
+     */
+    var minDepth = function(root) {
+        if(!root) return 0
+        function dfs(root){
+            if(!root.left && !root.right) return 1
+            let hl = Number.MAX_SAFE_INTEGER
+            let hr = Number.MAX_SAFE_INTEGER
+            if(root.left) hl = dfs(root.left)
+            if(root.right) hr = dfs(root.right)
+            return Math.min(hl+1, hr+1)
+        }
+        return dfs(root)
+    };
+}
