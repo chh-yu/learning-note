@@ -93,3 +93,8 @@ this是从包围的词法作用域继承而来的，
 * 如果你的内层函数表达式依赖于封装函数中某种像 var args = Array.prototype.slice.call(arguments)来保证arguments 的词法复制，那么这个内层区数应该可以安全地转
 换为二箭头函数。
 * 所有的其他情况----函数声明、较长的多语句的数表达式、需要词法名称标识符（递归等）的函数，以及任何不符合以上几点特征的函数一般都应该避免=>函数语法。
+### Promise
+promise/A规范(比较简单)
+promise/A+规范(业内推行的规范)
+es6在promise/A+规范上还加入了Promise.all,Promise.race,Promise.catch,Promise.resolve,promise.reject等
+then 方法必须返回一个 promise 对象
