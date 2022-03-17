@@ -403,3 +403,42 @@
         }
     };
 }
+{
+    // 130. 被围绕的区域
+    // 给你一个 m x n 的矩阵 board ，由若干字符 'X' 和 'O' ，找到所有被 'X' 围绕的区域，并将这些区域里所有的 'O' 用 'X' 填充。
+    /**
+     * @param {character[][]} board
+     * @return {void} Do not return anything, modify board in-place instead.
+     */
+    var solve = function(board) {
+        var n = board.length
+        var m = board[0].length
+        var record = []
+        function expand(i, j){
+            if(i < 0 || j < 0 || i > n-1 || j > m-1) return
+            if(board[i][j]=="O"){
+                board[i][j] = "A"
+                expand(i, j-1)
+                expand(i, j+1)
+                expand(i-1, j)
+                expand(i+1, j)
+            }
+        }
+        for(let i = 0; i < n; i++){
+            for(let j = 0; j < m; j++){
+                if(i == 0 || j == 0 || i == n-1 || j == m-1){
+                    expand(i, j)
+                }
+            }
+        }
+        // expand(3,1)
+        for(let j = 0; j < n; j++){
+            for(let i = 0; i < m; i++){
+                if(board[j][i] == "O")
+                    board[j][i] = "X"
+                if(board[j][i] == "A")
+                    board[j][i] = "O"
+            }
+        }
+    };
+}
