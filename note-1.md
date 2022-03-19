@@ -150,3 +150,5 @@ then 方法必须返回一个 promise 对象
 把HTTP底层的TCP协议改成了UDP
 * 因为UDP不管顺序，不管丢包
 * QUIC有一套自己的丢包重传和拥塞控制的协议
+### 什么是跨域？跨域解决方法
+[什么是跨域？跨域解决方法](https://blog.csdn.net/qq_38128179/article/details/84956552)
