@@ -27,5 +27,5 @@ var singleInstance = function(){
 var obj1 = new singleInstance(10, 20)
 var obj2 = new singleInstance(100, 200)
 
-console.log(obj1)
-console.log(obj2)
+console.log(obj1)    //{a:10, b:20}
+console.log(obj2)    //{a:10, b:20}
