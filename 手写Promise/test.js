@@ -1,28 +1,26 @@
 // const Promise = require("./Promise/v1")
-const Promise = require("./Promise/v2")
-
+const Promise = require("./Promise/v3")
 let a = new Promise((resolve, reject)=>{
     console.log("1")
     setTimeout(()=>{
         reject(2)
     }, 1000)
 })
-a.then((data)=>{
-    console.log(data)
-    return "data"
-}, (err)=>{
-    console.log(err)
+
+function settime(value, time){
     return new Promise((resolve, reject)=>{
         setTimeout(()=>{
-            resolve("err")
-        }, 2000)
+            resolve(value)
+        }, time)
     })
-})
-.then((e)=>{
-    console.log("我滴链式调用，完成啦！！！", e)
-})
-a.then((e)=>{
-    console.log(e+100)
-}, (e)=>{
-    console.log(e+100)
+}
+let b = Array(10).fill(1)
+b = b.map((item, i)=>settime(i, i*1000))
+b[0] = (new Promise((r, e)=>{
+    e(0)
+}))
+Promise.race(b).then((e)=>{
+    console.log(e)
+},(e)=>{
+    console.log(e)
 })
